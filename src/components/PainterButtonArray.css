@@ -1,0 +1,18 @@
+.PainterButtonArray {
+    position: relative;
+    width: 100%;
+}
+
+.option-button button {
+    background-color: var(--button-background-color) !important;
+    color: var(--button-text-color) !important;
+    border: 0.1rem solid black;
+    width: 92%;
+    height: 60%;
+    font-size: 1rem;
+}
+
+    .option-button button:hover {
+        background-color: var(--button-background-color-hover) !important;
+    }
+

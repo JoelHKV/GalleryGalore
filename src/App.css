@@ -1,4 +1,29 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --accent-color: #ff9800;
+    --button-text-color: #000000;
+    --button-background-color: #ee7700;
+    --button-background-color-hover: #aa5500;
+}
 
+.myContainer {
+    display: flex;
+    justify-content: center;
+    user-select: none;
+ 
+}
+
+.myGridContainer {
+    max-width: 800px;
+    background-color: lightgray;
+}
+
+.centerContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .unselectable {
     user-select: none;
@@ -14,7 +39,7 @@ html {
     grid-template-rows: 9vh 4vh auto 2vh calc(8vh + var(--extra-height));
     max-width: max-content;
     height: auto;
-    width: auto;
+    width: 800px;
     margin: auto;
     padding: 3vw;
     padding-top: 0rem;
@@ -24,40 +49,6 @@ html {
     background-color: #f8f8f8;
 }
 
-.title {
-    display: grid;
-    width: 100%;
-    grid-column: 1 / 13;
-    grid-row: 1;
-    font-weight: 900;
-    font-size: clamp(14px, 7vw, 50px);
-    margin: auto;
-    padding-top: 1vh;
-}
-
-.info_button {
-    display: grid;
-    grid-column: 1 / 13;
-    grid-row: 1;
-    position: relative;
-}
-    .info_button button {
-        position: absolute;
-        min-width: 4px;
-        right: 2%;
-        width: 50px;
-        background-color: #eee;
-        color: black;
-        border: 0.1rem solid black;
-        width: 10%;
-        top: 30%;
-        height: 50%;
-        font-size: 1rem;
-    }
-
-        .info_button button:hover {
-            background-color: #ccc;
-        }
 
 
 .top-buttons-or-counter {
@@ -68,38 +59,20 @@ html {
     font-weight: bold;
 }
 
-.painting-section {
-    grid-column: 1 / 13;
-    grid-row: 3;
+.painting-section22 {
     height: clamp(300px, 80vw, 600px);
     aspect-ratio: 1;
     border: 0.5rem solid black;
-    margin: auto;
     position: relative;
-     
 }
-    .painting-section img {
+    .painting-section33 img {
         height: 100%;
         width: 100%;
+        border: 0.5rem solid black;
         object-fit: cover;
     }
 
-.painting-slider {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    height: 1%;
-    width: 100%;
-}
 
-
-.painter-slider {
-    position: absolute;
-    top: 0;
-    left: 102%;
-    height: 100%;
-    width: 1%;
-}
 
 
 .painting-name {
@@ -120,6 +93,9 @@ html {
         font-size: 16px;
     }
 }
+
+
+
 
 
 @keyframes green-flash {

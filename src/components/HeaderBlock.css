@@ -1,0 +1,29 @@
+.HeaderBlock {
+    position: relative;
+    width: 100%;
+}
+
+
+.title3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 900;
+    font-size: clamp(14px, 7vw, 50px);
+}
+
+.info_button4 {
+    position: absolute;
+    left: 85%;
+    width: 6%;
+
+ 
+    background-color: var(--button-background-color) !important;
+    color: var(--button-text-color) !important;
+    border: 0.1rem solid black !important;
+    font-size: 1.3rem !important;
+}
+
+    .info_button4:hover {
+        background-color: var(--button-background-color-hover) !important;
+    }

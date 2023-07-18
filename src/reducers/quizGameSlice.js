@@ -35,8 +35,12 @@ const quizGameReducer = createSlice({
         painterSliderChoice: (state, newValue) => {
             state[0].randPainter = newValue.payload;
         },
+
         incrementRound: (state) => {
             state[0].roundNro += 1;
+            if (state[0].roundNro >= state[0].roundTotal && state[0].gameMode == 'quiz') {
+                state[0].gameMode = 'finish';
+            }
         },
         incrementPoint: (state) => {
             state[0].points += 1;
