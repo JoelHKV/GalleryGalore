@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { shuffleFisherYates } from '../utilities/numberCruching';
 const initialState = [
     {
+        roundIntro: 0,
         roundNro: 0,
         roundTotal: 3,
         points: 0,
@@ -35,7 +36,9 @@ const quizGameReducer = createSlice({
         painterSliderChoice: (state, newValue) => {
             state[0].randPainter = newValue.payload;
         },
-
+        incrementIntro: (state) => {
+            state[0].roundIntro += 1;
+        },
         incrementRound: (state) => {
             state[0].roundNro += 1;
             if (state[0].roundNro >= state[0].roundTotal && state[0].gameMode == 'quiz') {
@@ -49,6 +52,7 @@ const quizGameReducer = createSlice({
             state[0].gameMode = newValue.payload;
         },
         zeroCounter: (state) => {
+            state[0].roundIntro = 0;
             state[0].roundNro = 0;
             state[0].points = 0;
         },
@@ -56,5 +60,5 @@ const quizGameReducer = createSlice({
 
 });
 
-export const { incrementRound, incrementPoint, zeroCounter, addQuizOptions, randomChoice, paintingSliderChoice, painterSliderChoice, newGameMode } = quizGameReducer.actions;
+export const { incrementIntro, incrementRound, incrementPoint, zeroCounter, addQuizOptions, randomChoice, paintingSliderChoice, painterSliderChoice, newGameMode } = quizGameReducer.actions;
 export default quizGameReducer.reducer;

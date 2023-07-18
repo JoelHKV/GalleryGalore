@@ -11,12 +11,15 @@
     display: flex;
     justify-content: center;
     user-select: none;
- 
+    width: 100%;
 }
 
 .myGridContainer {
-    max-width: 800px;
+    user-select: none;
+    max-width: 660px;
+    height: 98vh;
     background-color: lightgray;
+    grid-row-gap: 1vh;
 }
 
 .centerContent {
@@ -25,67 +28,9 @@
     align-items: center;
 }
 
-.unselectable {
-    user-select: none;
-}
 
 html {
     font-size: 20px; /* Set the root font size */
-}
-
-.app-container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 9vh 4vh auto 2vh calc(8vh + var(--extra-height));
-    max-width: max-content;
-    height: auto;
-    width: 800px;
-    margin: auto;
-    padding: 3vw;
-    padding-top: 0rem;
-    text-align: center;
-    border: 2px solid black;
-    border-radius: 1vmax;
-    background-color: #f8f8f8;
-}
-
-
-
-.top-buttons-or-counter {
-    grid-column: 1 / 13;
-    grid-row: 2;
-    width: 100%;
-    font-size: clamp(18px, 4.5vw, 24px);
-    font-weight: bold;
-}
-
-.painting-section22 {
-    height: clamp(300px, 80vw, 600px);
-    aspect-ratio: 1;
-    border: 0.5rem solid black;
-    position: relative;
-}
-    .painting-section33 img {
-        height: 100%;
-        width: 100%;
-        border: 0.5rem solid black;
-        object-fit: cover;
-    }
-
-
-
-
-.painting-name {
-    grid-column: 1 / 13;
-    grid-row: 5;
-}
-
-.painter-choice-buttons {
-    grid-column: 1 / 13;
-    grid-row: 5;
-    width: 100%;
-    font-size: clamp(18px, 4.5vw, 24px);
-    font-weight: bold;
 }
 
 @media screen and (max-width: 765px) {
@@ -95,42 +40,4 @@ html {
 }
 
 
-
-
-
-@keyframes green-flash {
-    0% {
-        border: 0.5rem solid black;
-    }
-
-    50% {
-        border: 0.5rem solid green;
-    }
-
-    100% {
-        border: 0.5rem solid black;
-    }
-}
-
-@keyframes red-flash {
-    0% {
-        border: 0.5rem solid black;
-    }
-
-    50% {
-        border: 0.5rem solid red;
-    }
-
-    100% {
-        border: 0.5rem solid black;
-    }
-}
-
-.go-green {
-    animation: green-flash 1.5s infinite;
-}
-
-.go-red {
-    animation: red-flash 1.5s infinite;
-}
 

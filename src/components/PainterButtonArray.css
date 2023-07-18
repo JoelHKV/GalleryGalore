@@ -1,18 +1,46 @@
 .PainterButtonArray {
     position: relative;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
+
+.option-button {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.0rem;
+    margin-bottom: 0.4rem;
+}
+
 
 .option-button button {
     background-color: var(--button-background-color) !important;
     color: var(--button-text-color) !important;
     border: 0.1rem solid black;
-    width: 92%;
-    height: 60%;
+    width: 90%;
+    height: auto;
     font-size: 1rem;
 }
 
     .option-button button:hover {
         background-color: var(--button-background-color-hover) !important;
     }
+
+
+.right-option {
+    pointer-events: none;
+}
+.wrong-option {
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+
+@media (max-width: 767px) {
+    .option-button {
+        flex-basis: 100%;  
+    }
+} 
 

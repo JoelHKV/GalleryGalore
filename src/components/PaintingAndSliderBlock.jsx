@@ -1,7 +1,7 @@
 import React from 'react';
 import { Slider } from '@mui/material';
 import './PaintingAndSliderBlock.css';
-
+import IntroBlock from './IntroBlock'; // instructions are here
 import { useDispatch, useSelector } from 'react-redux';
 import { randomChoice, paintingSliderChoice, painterSliderChoice } from '../reducers/quizGameSlice';
 
@@ -39,6 +39,10 @@ const PaintingAndSliderBlock = ({ gameMode, preloadedImages }) => {
                 alt="Image"
                 onClick={clickPaintingRandom}
             />
+
+            {(gameMode === 'intro') && (
+                <IntroBlock />
+            )}
 
             <div className="painting-slider">
                 <Slider

@@ -1,0 +1,29 @@
+.PainterButtonArray {
+    position: relative;
+}
+.intro-info-text {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: auto;
+    text-align: left;
+    padding: 2%;
+    background-color: white;
+    color: black;
+    border: 0.3rem solid black;
+  
+}
+
+.intro_button button {
+    width: 100%;
+    height: clamp(20px, 3.5vw, 35px);
+    margin-top: 0.4rem; 
+    font-size: 1rem;
+    background-color: #eee;
+    color: black;
+    border: 0.1rem solid black;
+}
+
+    .intro_button button:hover {
+        background-color: #ccc;
+    } 

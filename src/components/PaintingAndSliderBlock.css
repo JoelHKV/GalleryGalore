@@ -1,14 +1,15 @@
 .PaintingAndSliderBlock {
     position: relative;
     width: 100%;
-  
+ 
 }
 
     .PaintingAndSliderBlock img {
-        height: clamp(300px, 80vw, 600px);
+        width: 100%;
         aspect-ratio: 1;
         border: 0.5rem solid black;
         position: relative;
+  
     }
 
 .painting-slider {

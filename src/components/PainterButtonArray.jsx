@@ -3,21 +3,21 @@ import { Button } from '@mui/material';
 import './PainterButtonArray.css';
 import { useSelector } from 'react-redux';
 
-
-const PainterButtonArray = ({ buttonFunction, painters  }) => {
+const PainterButtonArray = ({ buttonFunction, painters, wrongOptionOpacity  }) => {
 
     const painterOptions = useSelector((state) => state.counter[0].painterOptions); // multiple choice options
     const thisPainterNro = useSelector((state) => state.counter[0].randPainter);
-    //buttonData[0].name = painters[painterOptions[0]]
-
+ 
     const buttonData = painterOptions.map((option, index) => {
+        const isRightOption = option === thisPainterNro;
+        const className = `painter-button-${index} ${isRightOption ? '' : wrongOptionOpacity}`;
+
         return {
             name: painters[option],
-            className: `${option}-button`,
-            param: option === thisPainterNro,
+            className: className,
+            param: isRightOption,
         };
     });
-
 
     const buttons = buttonData.map((button, index) => (
         <div key={index} className={`option-button ${button.className}`}>

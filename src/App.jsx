@@ -3,9 +3,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { incrementRound, incrementPoint, zeroCounter, addQuizOptions, randomChoice, newGameMode } from './reducers/quizGameSlice';
 
-import { Grid, Box, Button, Slider, Typography } from '@mui/material'; // use MUI component library
-import CustomButtonGroup from './components/CustomButtonGroup'; // custom button array component
-import IntroBlock from './components/IntroBlock'; // instructions are here
+import { Grid, Box  } from '@mui/material'; // use MUI component library
+
 import HeaderBlock from './components/HeaderBlock';
 import RoundDisplayBlock from './components/RoundDisplayBlock';
 import ModeButtonRow from './components/ModeButtonRow';
@@ -50,26 +49,15 @@ function paintingLoader() {
 
 const App = () => {
 
-    const [revealAnswer, setRevealAnswer] = useState(false);
-
-
-    const [borderColorFlash, setborderColorFlash] = useState(''); // state for flashing the correct quiz answer
+    const [wrongOptionOpacity, setWrongOptionOpacity] = useState('');
     const [containerWidth, setContainerWidth] = useState(null); // state for container width
     const appContainerRef = useRef(null);
 
-    const roundNro = useSelector((state) => state.counter[0].roundNro); //round nro
 
     const gameMode = useSelector((state) => state.counter[0].gameMode); // 'intro' vs 'practice' vs 'quiz' vs 'finish'
-    const roundTotal = useSelector((state) => state.counter[0].roundTotal); // total nro rounds
-    const points = useSelector((state) => state.counter[0].points); // nro points
-  
+
     const dispatch = useDispatch();
 
-    const nextIntro = () => {
-        dispatch(incrementRound());
-        dispatch(addQuizOptions(maxPainterIndex))
-
-    };
 
 
     const clickInfo = () => { // show introscreen
@@ -86,21 +74,16 @@ const App = () => {
         }
     };
 
-    const handleUserGuess = (correctPainterGuess) => { 
-
+    const handleUserGuess = (correctPainterGuess) => {
+        if (wrongOptionOpacity !== '') { return }
+        setWrongOptionOpacity('wrong-option')
         if (correctPainterGuess) { // correct answer
             dispatch(incrementPoint());
-            setborderColorFlash('go-green');
-        } else {
-            setborderColorFlash('go-red');
-        }
-
+        }        
         setTimeout(() => {
-            setRevealAnswer(true)
-        }, 200);
-        setTimeout(() => {
-            setborderColorFlash(''); // stop the flashing
-            setRevealAnswer(false)
+            setWrongOptionOpacity('')
+           // setborderColorFlash(''); // stop the flashing
+          //  setRevealAnswer(false)
             dispatch(incrementRound()); // next round
             dispatch(randomChoice([maxPaintingIndex, maxPainterIndex])); // random painting
             dispatch(addQuizOptions(maxPainterIndex)); // make options           
@@ -132,68 +115,39 @@ const App = () => {
        // handleResize();
     }, []);
 
-    return (
-        <>
-            <Box className="myContainer">   
-                <Grid container spacing={2} className="myGridContainer">
-                    <Grid item xs={12} className="centerContent" >
-                        <HeaderBlock clickInfo={clickInfo} />
-                    </Grid>
-                    <Grid item xs={12} >
-                        {(gameMode === 'quiz') && (<RoundDisplayBlock />)}
-                        {(gameMode !== 'quiz') &&
-                            (<ModeButtonRow buttonFunction={handleModeChange} />)}
-                    </Grid>
-                    <Grid item xs={12} className={`painting-section ${borderColorFlash}`}>
-                        {(gameMode === 'finish') && (<RoundDisplayBlock />)}
-                        {(gameMode !== 'finish') && (<PaintingAndSliderBlock
-                            gameMode={gameMode}
-                            preloadedImages={preloadedImages} />)}
-                    </Grid>
-                    <Grid item xs={12} >
-                        {(gameMode === 'practice' || revealAnswer) && (
-                            <ShowDetaisBlock
-                                paintingNames={paintingNames}
-                                painters={painters}
-                            />)}
-                        {(gameMode === 'quiz' && !revealAnswer) && (
-                            <PainterButtonArray
-                                buttonFunction={handleUserGuess}
-                                painters={painters}
-                            />)}                        
-                        
-
-                        
-                    </Grid>
+    return (      
+        <Box className="myContainer">   
+            <Grid container className="myGridContainer">
+                <Grid item xs={12} className="centerContent" >
+                    <HeaderBlock clickInfo={clickInfo} />
+                </Grid>
+                <Grid item xs={12} >
+                    {(gameMode === 'quiz') && (<RoundDisplayBlock mode={'round'} />)}
+                    {(gameMode !== 'quiz') &&
+                        (<ModeButtonRow buttonFunction={handleModeChange} />)}
+                </Grid>
+                <Grid item xs={12} className={`painting-section`}>
+                    {(gameMode === 'finish') && (<RoundDisplayBlock mode={'result'} />)}
+                    {(gameMode !== 'finish') && (<PaintingAndSliderBlock
+                        gameMode={gameMode}
+                        preloadedImages={preloadedImages} />)}
 
                 </Grid>
-
-
-            </Box>
-            
-            <div ref={appContainerRef} className="app-container unselectable"> 
-                                                          
-                <div className={`painting-section ${borderColorFlash}`}>
-                  
-                    {(gameMode === 'finish') && (
-                        <>
-                            <div>
-                                <h2>Your score: {points} / {roundTotal}</h2>
-                            </div>
-
-                        </>
-                    )}
-                 
-                
-                    {(gameMode === 'intro' || gameMode === 'reveal_intro') && (
-                        <IntroBlock nextIntro={nextIntro} roundNro={roundNro} />
-                    )}
-
-                </div>
-                
-               
-            </div>
-        </>
+                <Grid item xs={12} >
+                    {(gameMode === 'practice') && (
+                        <ShowDetaisBlock
+                            paintingNames={paintingNames}
+                            painters={painters}
+                        />)}
+                    {(gameMode === 'quiz') && (
+                        <PainterButtonArray
+                            buttonFunction={handleUserGuess}
+                            painters={painters}
+                            wrongOptionOpacity={wrongOptionOpacity}
+                        />)}                                                                     
+                </Grid>
+            </Grid>
+        </Box>                      
     );
 };
 
