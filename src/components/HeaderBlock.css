@@ -1,29 +1,23 @@
 .HeaderBlock {
     position: relative;
     width: 100%;
+    text-align: center;
 }
 
+    .HeaderBlock Button {
+        position: absolute;
+        left: 98%;
+        top: 0%;
+        transform: translateX(-100%);
+        width: clamp(30px, 3vmax, 50px);
+        min-width: 0 !important;      
+        height: clamp(30px, 3vmax, 50px);
+        background-color: var(--button-background-color) !important;
+        color: var(--button-text-color) !important;
+        border: 0.1rem solid black !important;
+        font-size: clamp(15px, 3vmax, 30px) !important;
+    }
 
-.title3 {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-weight: 900;
-    font-size: clamp(14px, 7vw, 50px);
-}
-
-.info_button4 {
-    position: absolute;
-    left: 85%;
-    width: 6%;
-
- 
-    background-color: var(--button-background-color) !important;
-    color: var(--button-text-color) !important;
-    border: 0.1rem solid black !important;
-    font-size: 1.3rem !important;
-}
-
-    .info_button4:hover {
+    .HeaderBlock Button:hover {
         background-color: var(--button-background-color-hover) !important;
     }

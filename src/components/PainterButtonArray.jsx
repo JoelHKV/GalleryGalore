@@ -6,7 +6,7 @@ import { incrementPoint, incrementRound } from '../reducers/quizGameSlice';
 
 const answerTimeoutTime = 1200;
 
-const PainterButtonArray = ({ quizNextRound, painters, wrongOptionOpacity, setWrongOptionOpacity  }) => {
+const PainterButtonArray = ({ gameMode, quizNextRound, painters, wrongOptionOpacity, setWrongOptionOpacity  }) => {
 
     const dispatch = useDispatch();
 
@@ -25,11 +25,13 @@ const PainterButtonArray = ({ quizNextRound, painters, wrongOptionOpacity, setWr
 
     const painterOptions = useSelector((state) => state.counter[0].painterOptions); // multiple choice options
     const thisPainterNro = useSelector((state) => state.counter[0].randPainter);
- 
+
+    const fakeIntroButton = gameMode === 'intro' ? 'painter-button-fake' : '';
+
     const buttonData = painterOptions.map((option, index) => {
         const isRightOption = option === thisPainterNro;
-        const className = `painter-button-${index} ${isRightOption ? '' : wrongOptionOpacity}`;
-
+        const className = `${fakeIntroButton} painter-button-${index} ${isRightOption ? '' : wrongOptionOpacity}`;
+        
         return {
             name: painters[option],
             className: className,
@@ -38,7 +40,7 @@ const PainterButtonArray = ({ quizNextRound, painters, wrongOptionOpacity, setWr
     });
 
     const buttons = buttonData.map((button, index) => (
-        <div key={index} className={`option-button ${button.className}`}>
+        <div key={index} className={`painter-option-button ${button.className}`}>
             <Button variant="contained" onClick={() => handleUserGuess(button.param)}>
                 {button.name}
             </Button>

@@ -17,9 +17,10 @@ const quizGameReducer = createSlice({
     initialState,
     reducers: {
         randomChoice: (state, maxIndex) => {
-            
-            state[0].randPainter = Math.floor(Math.random() * (maxIndex.payload[1] + 1))
-            state[0].randPainting = Math.floor(Math.random() * (maxIndex.payload[0] + 1));
+            if ( state[0].gameMode !== 'finish') {
+                state[0].randPainter = Math.floor(Math.random() * (maxIndex.payload[1] + 1))
+                state[0].randPainting = Math.floor(Math.random() * (maxIndex.payload[0] + 1));
+            }
         },
         addQuizOptions: (state, maxIndex) => {
             let thesepainters = Array.from({ length: (maxIndex.payload + 1) }, (_, i) => i);
@@ -44,6 +45,7 @@ const quizGameReducer = createSlice({
             if (state[0].roundNro >= state[0].roundTotal) {
                 state[0].gameMode = 'finish';
             }
+
         },
         incrementPoint: (state) => {
             state[0].points += 1;
@@ -52,7 +54,7 @@ const quizGameReducer = createSlice({
             state[0].gameMode = newValue.payload;
         },
         zeroCounter: (state) => {
-            state[0].roundIntro = 0;
+            state[0].roundIntro = 1;
             state[0].roundNro = 0;
             state[0].points = 0;
         },

@@ -1,9 +1,26 @@
 import React from 'react';
-import { Slider } from '@mui/material';
+import { styled } from '@mui/system';
+import { Slider  } from '@mui/material';
 import './PaintingAndSliderBlock.css';
-import IntroBlock from './IntroBlock'; // instructions are here
 import { useDispatch, useSelector } from 'react-redux';
 import { randomChoice, paintingSliderChoice, painterSliderChoice } from '../reducers/quizGameSlice';
+
+ 
+const CustomSlider = styled(Slider)(() => ({
+    '& .MuiSlider-thumb': {
+        backgroundColor: 'var(--button-background-color)',
+        width: 26,
+        height: 26,
+         
+    },
+    '& .MuiSlider-track': {
+        backgroundColor: 'black',
+    },
+    '& .MuiSlider-rail': {
+        backgroundColor: 'black',
+    },
+}));
+
 
 const PaintingAndSliderBlock = ({ gameMode, preloadedImages }) => {
 
@@ -14,9 +31,12 @@ const PaintingAndSliderBlock = ({ gameMode, preloadedImages }) => {
 
     const thisPainterNro = useSelector((state) => state.counter[0].randPainter); // painter nro
     const thisPaintingNro = useSelector((state) => state.counter[0].randPainting); // painting nro
+    const roundIntro = useSelector((state) => state.counter[0].roundIntro); // intro round nro
+
+
 
     const clickPaintingRandom = () => { // shows a random painting after clicking a painting 
-        if (gameMode === 'practice') {
+        if (gameMode === 'practice' || roundIntro === 2) {
             dispatch(randomChoice([maxPaintingIndex, maxPainterIndex]));
         }
     }
@@ -31,6 +51,7 @@ const PaintingAndSliderBlock = ({ gameMode, preloadedImages }) => {
        
     };
 
+    
     return (
         <div className="PaintingAndSliderBlock centerContent">
             <img style={gameMode === 'practice' ? { cursor: 'pointer' } : {}}
@@ -38,14 +59,12 @@ const PaintingAndSliderBlock = ({ gameMode, preloadedImages }) => {
                 alt="Image"
                 onClick={clickPaintingRandom}
             />
-
-            {(gameMode === 'intro') && (
-                <IntroBlock />
-            )}
-
+            {(gameMode === 'practice' || roundIntro === 2) && (
+            <div>
             <div className="painting-slider">
-                <Slider
+                <CustomSlider
                     value={thisPaintingNro}
+                     
                     onChange={(event, newValue) => handleSliderChange(newValue, 'Painting')}
                     min={0}
                     max={maxPaintingIndex}
@@ -53,8 +72,9 @@ const PaintingAndSliderBlock = ({ gameMode, preloadedImages }) => {
                     marks
                 />
             </div>
+            
             <div className="painter-slider">
-                <Slider
+                <CustomSlider
                     value={thisPainterNro}
                     onChange={(event, newValue) => handleSliderChange(newValue, 'Painter')}
                     orientation="vertical"
@@ -64,6 +84,8 @@ const PaintingAndSliderBlock = ({ gameMode, preloadedImages }) => {
                     marks
                 />
             </div>
+                </div>
+            )}
         </div>
     );
 };

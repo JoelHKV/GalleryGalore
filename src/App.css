@@ -1,25 +1,23 @@
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --accent-color: #ff9800;
+    --background-color: #ecb;
     --button-text-color: #000000;
     --button-background-color: #ee7700;
     --button-background-color-hover: #aa5500;
 }
 
-.myContainer {
+.appContainer {
     display: flex;
     justify-content: center;
     user-select: none;
     width: 100%;
 }
 
-.myGridContainer {
+.gridContainer {
     user-select: none;
     max-width: 660px;
-    height: 98vh;
-    background-color: lightgray;
+    background-color: var(--background-color);
     grid-row-gap: 1vh;
+    border-radius: 10px;
 }
 
 .centerContent {
@@ -28,16 +26,52 @@
     align-items: center;
 }
 
+.first-row {
+    height: 8vh;
+   
+}
+
+.second-row {
+    height: 4vh;
+}
+
+
+.mainGameWindow {
+    position: relative;
+}
+
+.last-row {
+    padding-top: 1vh;
+    display: flex;
+    align-items: flex-start;
+    height: 16vh;
+}
+
 
 html {
     font-size: 20px; /* Set the root font size */
 }
 
-@media screen and (max-width: 765px) {
-    html {
-        font-size: 16px;
-    }
-}
 
+
+    @media screen and (max-width: 767px) {
+        .last-row {
+            height: 24vh;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+
+        .painter-option-button {
+            flex-basis: 100%;
+        }
+    } 
+
+
+
+
+ 
 
 

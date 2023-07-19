@@ -17,7 +17,7 @@ const buttonData = [
 
 const ModeButtonRow = ({ buttonFunction }) => {
     const buttons = buttonData.map((button, index) => (
-        <div key={index} className={`array-button ${button.className}`}>
+        <div key={index} className={`${button.className}`}>
             <Button variant="contained" onClick={() => buttonFunction(button.param)}>
                 {button.name}
             </Button>
