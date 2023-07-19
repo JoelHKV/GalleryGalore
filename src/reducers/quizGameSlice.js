@@ -41,7 +41,7 @@ const quizGameReducer = createSlice({
         },
         incrementRound: (state) => {
             state[0].roundNro += 1;
-            if (state[0].roundNro >= state[0].roundTotal && state[0].gameMode == 'quiz') {
+            if (state[0].roundNro >= state[0].roundTotal) {
                 state[0].gameMode = 'finish';
             }
         },

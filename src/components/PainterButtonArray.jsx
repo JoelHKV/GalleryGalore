@@ -1,9 +1,27 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import './PainterButtonArray.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { incrementPoint, incrementRound } from '../reducers/quizGameSlice';
 
-const PainterButtonArray = ({ buttonFunction, painters, wrongOptionOpacity  }) => {
+const answerTimeoutTime = 1200;
+
+const PainterButtonArray = ({ quizNextRound, painters, wrongOptionOpacity, setWrongOptionOpacity  }) => {
+
+    const dispatch = useDispatch();
+
+    const handleUserGuess = (correctPainterGuess) => {
+        if (wrongOptionOpacity !== '') { return }
+        setWrongOptionOpacity('wrong-option')
+        if (correctPainterGuess) { // correct answer
+            dispatch(incrementPoint());
+        }
+        setTimeout(() => {
+            setWrongOptionOpacity('')
+            dispatch(incrementRound())
+            quizNextRound()          
+        }, answerTimeoutTime);
+    }
 
     const painterOptions = useSelector((state) => state.counter[0].painterOptions); // multiple choice options
     const thisPainterNro = useSelector((state) => state.counter[0].randPainter);
@@ -21,7 +39,7 @@ const PainterButtonArray = ({ buttonFunction, painters, wrongOptionOpacity  }) =
 
     const buttons = buttonData.map((button, index) => (
         <div key={index} className={`option-button ${button.className}`}>
-            <Button variant="contained" onClick={() => buttonFunction(button.param)}>
+            <Button variant="contained" onClick={() => handleUserGuess(button.param)}>
                 {button.name}
             </Button>
         </div>

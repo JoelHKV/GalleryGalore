@@ -5,7 +5,6 @@ import IntroBlock from './IntroBlock'; // instructions are here
 import { useDispatch, useSelector } from 'react-redux';
 import { randomChoice, paintingSliderChoice, painterSliderChoice } from '../reducers/quizGameSlice';
 
-
 const PaintingAndSliderBlock = ({ gameMode, preloadedImages }) => {
 
     const dispatch = useDispatch();

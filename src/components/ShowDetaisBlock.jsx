@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import './RoundDisplayBlock.css';
+import './ShowDetaisBlock.css';
 import { useSelector } from 'react-redux';
 const ShowDetaisBlock = ({ paintingNames, painters }) => {
  
@@ -9,7 +9,7 @@ const ShowDetaisBlock = ({ paintingNames, painters }) => {
 
     return (
         <div className="ShowDetaisBlock  centerContent">
-            <div className="painting-name">
+            <div className="painting-painter-name">
                 <Typography variant="h5">
                     {paintingNames[thisPaintingNro]}
                 </Typography>
