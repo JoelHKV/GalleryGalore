@@ -7,16 +7,16 @@
         background-color: var(--button-background-color) !important;
         color: var(--button-text-color) !important;
         border: 0.1rem solid black;
-        width: 92%;
+        width: 90%;
+        left: 5%;
         height: 4vh;
         font-size: 1rem;
     }
-
-        .ModeButtonRow Button:hover {
-            background-color: var(--button-background-color-hover) !important;
+        @media(hover: hover) {
+            .ModeButtonRow Button:hover {
+                background-color: var(--button-background-color-hover) !important;
+            }
         }
-
-.practice-button, .quiz-button {
-    width: 40% !important;
-  
-}
+    .practice-button, .quiz-button {
+        width: 40% !important;
+    }

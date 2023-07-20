@@ -16,6 +16,9 @@
         border: 0.1rem solid black !important;
         font-size: clamp(10px, 2vmax, 20px) !important;
     }
-        .RoundDisplayBlock Button:hover {
-            background-color: var(--button-background-color-hover) !important;
+
+        @media(hover: hover) {
+            .RoundDisplayBlock Button:hover {
+                background-color: var(--button-background-color-hover) !important;
+            }
         }

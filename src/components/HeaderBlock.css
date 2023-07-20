@@ -17,7 +17,8 @@
         border: 0.1rem solid black !important;
         font-size: clamp(15px, 3vmax, 30px) !important;
     }
-
+@media(hover: hover) {
     .HeaderBlock Button:hover {
         background-color: var(--button-background-color-hover) !important;
     }
+}

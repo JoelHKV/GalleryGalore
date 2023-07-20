@@ -25,7 +25,7 @@
         color: black;
         border: 0.1rem solid black;
     }
-
-    .intro_button button:hover {
-        background-color: #ccc;
-    } 
+        .intro_button button:hover {
+            background-color: #eee;
+        }
+       

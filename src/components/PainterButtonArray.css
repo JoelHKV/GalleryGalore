@@ -25,9 +25,22 @@
         font-size: 1rem;
     }
 
-        .painter-option-button button:hover {
-            background-color: var(--button-background-color-hover) !important;
-        }
+@media(hover: hover) {
+    .painter-option-button button:hover {
+        background-color: var(--button-background-color-hover) !important;
+    }
+}
+
+
+
+
+
+      
+
+
+ 
+
+
 
 
 .right-option {
