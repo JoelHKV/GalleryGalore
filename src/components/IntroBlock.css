@@ -4,14 +4,14 @@
 .intro-info-text {
     position: absolute;
     top: 10%;
-    left: 13%;
-    width: 68%;
+    left: 15%;
+    width: 64%;
+     
     text-align: left;
     padding: 2%;
     background-color: white;
     color: black;
     border: 0.3rem solid black;
-  
 }
 
 

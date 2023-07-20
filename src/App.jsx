@@ -6,13 +6,10 @@ import { incrementIntro, zeroCounter, addQuizOptions, randomChoice, newGameMode 
 import { Grid, Box } from '@mui/material'; // use MUI component library
 
 import HeaderBlock from './components/HeaderBlock';
-import RoundDisplayBlock from './components/RoundDisplayBlock';
-import ModeButtonRow from './components/ModeButtonRow';
-import PaintingAndSliderBlock from './components/PaintingAndSliderBlock';
-import ShowDetaisBlock from './components/ShowDetaisBlock';
-import PainterButtonArray from './components/PainterButtonArray';
-import IntroBlock from './components/IntroBlock';
-import ResultBlock from './components/ResultBlock';
+
+import InstructionBlock from './components/InstructionBlock';
+import PracticeBlock from './components/PracticeBlock';
+import QuizBlock from './components/QuizBlock';
 
 import { loadImages } from './utilities/loadImages';
 
@@ -27,7 +24,6 @@ const App = () => {
     const [paintingNames, setPaintingNames] = useState([]);
 
     const gameMode = useSelector((state) => state.counter[0].gameMode); // 'intro' vs 'practice' vs 'quiz' vs 'finish'
-    const roundIntro = useSelector((state) => state.counter[0].roundIntro); // intro round nro
 
     const dispatch = useDispatch();
 
@@ -60,43 +56,35 @@ const App = () => {
                 <Grid item xs={12} className="first-row centerContent" >
                     <HeaderBlock/>
                 </Grid>
-                <Grid item xs={12} className="second-row centerContent">
-                    {(gameMode === 'quiz') && (<RoundDisplayBlock />)}
-                    {(gameMode !== 'quiz') &&
-                        (<ModeButtonRow buttonFunction={handleModeChange} />
-                    )}
-                </Grid>
-                <Grid item xs={12} className="mainGameWindow">
-
-                    {(imagesLoaded) && (
-                        <PaintingAndSliderBlock
-                            gameMode={gameMode}
-                            preloadedImages={preloadedImages} />          
-                    )}
-                    {(gameMode === 'intro' && roundIntro < 4) && (
-                        <IntroBlock />
-                    )}
-                    {(gameMode === 'finish') && (
-                        <ResultBlock />
-                    )}
-                </Grid>
-                <Grid item xs={12} className="last-row centerContent">
-                    {((gameMode === 'practice' || roundIntro === 2 || roundIntro === 4) && imagesLoaded) && (
-                        <ShowDetaisBlock
-                            paintingNames={paintingNames}
-                            painters={painters.map(painter => painter.nameFull)}
-                        />
-                    )}
-                    {((gameMode === 'quiz' || roundIntro === 3) && imagesLoaded) && (
-                        <PainterButtonArray
-                            painters={painters.map(painter => painter.nameShort)}
-                            wrongOptionOpacity={wrongOptionOpacity}
-                            setWrongOptionOpacity={setWrongOptionOpacity}
-                            quizNextRound={quizNextRound}
-                            gameMode={gameMode}
-                        />
-                    )}                                                                     
-                </Grid>
+                {(gameMode === 'intro') && (
+                    <InstructionBlock
+                        handleModeChange={handleModeChange}
+                        imagesLoaded={imagesLoaded}
+                        preloadedImages={preloadedImages}
+                        painters={painters}
+                        wrongOptionOpacity={wrongOptionOpacity}
+                        setWrongOptionOpacity={setWrongOptionOpacity}
+                        quizNextRound={quizNextRound}
+                    />
+                )}
+                {(gameMode === 'practice' || gameMode === 'finish') && imagesLoaded && (                                          
+                    <PracticeBlock
+                        gameMode={gameMode}
+                        handleModeChange={handleModeChange}
+                        preloadedImages={preloadedImages}
+                        paintingNames={paintingNames}
+                        painters={painters}
+                    />                         
+                )}
+                {(gameMode === 'quiz') && imagesLoaded && (                 
+                    <QuizBlock
+                        preloadedImages={preloadedImages}
+                        painters={painters}
+                        wrongOptionOpacity={wrongOptionOpacity}
+                        setWrongOptionOpacity={setWrongOptionOpacity}
+                        quizNextRound={quizNextRound }                         
+                    />                                           
+                )}                                       
             </Grid>
         </Box>                      
     );

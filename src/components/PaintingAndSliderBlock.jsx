@@ -22,21 +22,17 @@ const CustomSlider = styled(Slider)(() => ({
 }));
 
 
-const PaintingAndSliderBlock = ({ gameMode, preloadedImages }) => {
+const PaintingAndSliderBlock = ({ showSlider, clickable, preloadedImages }) => {
 
     const dispatch = useDispatch();
-
     const maxPaintingIndex = preloadedImages.length -1;  
     const maxPainterIndex = preloadedImages[0].length - 1;
 
     const thisPainterNro = useSelector((state) => state.counter[0].randPainter); // painter nro
     const thisPaintingNro = useSelector((state) => state.counter[0].randPainting); // painting nro
-    const roundIntro = useSelector((state) => state.counter[0].roundIntro); // intro round nro
-
-
-
+    
     const clickPaintingRandom = () => { // shows a random painting after clicking a painting 
-        if (gameMode === 'practice' || roundIntro === 2) {
+        if (clickable) {
             dispatch(randomChoice([maxPaintingIndex, maxPainterIndex]));
         }
     }
@@ -54,12 +50,12 @@ const PaintingAndSliderBlock = ({ gameMode, preloadedImages }) => {
     
     return (
         <div className="PaintingAndSliderBlock centerContent">
-            <img style={gameMode === 'practice' ? { cursor: 'pointer' } : {}}
+            <img style={clickable ? { cursor: 'pointer' } : {}}
                 src={preloadedImages[thisPaintingNro][thisPainterNro].src}
                 alt="Image"
                 onClick={clickPaintingRandom}
             />
-            {(gameMode === 'practice' || roundIntro === 2) && (
+            {(showSlider) && (
             <div>
             <div className="painting-slider">
                 <CustomSlider

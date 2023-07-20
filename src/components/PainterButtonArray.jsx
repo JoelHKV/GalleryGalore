@@ -6,7 +6,7 @@ import { incrementPoint, incrementRound } from '../reducers/quizGameSlice';
 
 const answerTimeoutTime = 1200;
 
-const PainterButtonArray = ({ gameMode, quizNextRound, painters, wrongOptionOpacity, setWrongOptionOpacity  }) => {
+const PainterButtonArray = ({ clickableButtons, quizNextRound, painters, wrongOptionOpacity, setWrongOptionOpacity  }) => {
 
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const PainterButtonArray = ({ gameMode, quizNextRound, painters, wrongOptionOpac
     const painterOptions = useSelector((state) => state.counter[0].painterOptions); // multiple choice options
     const thisPainterNro = useSelector((state) => state.counter[0].randPainter);
 
-    const fakeIntroButton = gameMode === 'intro' ? 'painter-button-fake' : '';
+    const fakeIntroButton = clickableButtons ? '' : 'painter-button-fake';
 
     const buttonData = painterOptions.map((option, index) => {
         const isRightOption = option === thisPainterNro;

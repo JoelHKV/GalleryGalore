@@ -24,9 +24,9 @@ const IntroBlock = () => {
     const roundIntro = useSelector((state) => state.counter[0].roundIntro); // intro round nro
 
     return (
-        <div className="IntroBlock centerContent">
+        <div className="IntroBlock">
             <div className="intro-info-text">
-                <Typography variant="h5" style={{ whiteSpace: 'pre-line' }}>
+                <Typography variant="h6" style={{ whiteSpace: 'pre-line' }}>
                     {instructionsText[roundIntro]}
                 </Typography>
                 <div>

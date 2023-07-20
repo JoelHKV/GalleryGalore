@@ -4,8 +4,8 @@
     height: 90vw;
     max-width: clamp(300px, 63vh, 630px);
     max-height: clamp(300px, 63vh, 630px);
-    margin-left: auto; /* Align to center horizontally */
-    margin-right: auto; /* Align to center horizontally */
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
     .PaintingAndSliderBlock img {
